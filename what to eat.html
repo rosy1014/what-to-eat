@@ -1,0 +1,65 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="what to eat style.css" />
+</head>
+
+<body>
+	<h1 style="font-size: 60px">中午吃啥？？？</h1>
+
+<input type = "text" id = "myMenu" value = "hello" >
+<button id = "add" onclick="addMe()">加上去</button>
+<div id = "shuffleArea" ></div>
+<button class = "buttons" id = "begin" onclick = "start()">开始摇</button>
+<button class = "buttons" id= "stop" onclick = "ok()">选择啦</button>
+<div>
+	
+</div>
+
+
+</body>
+	<script>
+	var menu = ["包子","饺子","云吞","汉堡","pizza"];
+
+	var myString= "";
+	for(i=0;i<menu.length;i++){
+		myString+=menu[i]+"，";
+	}
+	$('#myMenu').val(myString);
+
+    // Let user modify the menu, add new items onto the menu.
+    // Set off shuffling at the same time.
+	function addMe(){
+		menu=$('#myMenu').val().split("，");
+		var newMenu=[];
+
+        for(i=0;i<menu.length;i++){
+	        if (menu[i]!=''){
+                newMenu.push(menu[i]);
+            }
+        }
+        menu=newMenu;
+		alert(menu);
+        start();
+	}
+
+
+	var timer;
+
+    function start(){
+		clearInterval(timer);
+		timer = setInterval('change()', 80);
+	}
+    // confirm to stop shuffling and make a choice
+    function ok(){
+		clearInterval(timer);
+	}
+    // start to shuffle
+	function change(){
+		$('#shuffleArea').html(menu[ parseInt(Math.random()* menu.length)]);
+	}
+
+
+	</script>
+</html>
