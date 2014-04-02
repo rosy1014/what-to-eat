@@ -20,7 +20,7 @@ function addDish() {
     }
     menu = newMenu;
     alert(menu);
-    start();
+    startShuffle();
 }
 
 
